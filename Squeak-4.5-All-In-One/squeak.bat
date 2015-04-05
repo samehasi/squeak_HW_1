@@ -1,0 +1,1 @@
+.\Squeak-4.5-All-in-One.app\Contents\LinuxAndWindows\Squeak.exe

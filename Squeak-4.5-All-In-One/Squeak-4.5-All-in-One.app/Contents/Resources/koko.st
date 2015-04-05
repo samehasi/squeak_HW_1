@@ -1,0 +1,17 @@
+Object subclass: #Animal
+	instanceVariableNames: 'numOfLegs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Lab-zoo'!
+
+!Animal methodsFor: 'initialize-release' stamp: 'sa 4/5/2015 21:28'!
+initialize
+	numOfLegs:=4.! !
+
+
+!Animal methodsFor: 'printing' stamp: 'sa 4/5/2015 21:36'!
+printOn: aStream 
+ |name|
+ name := (self class name , ' has ', numOfLegs printString, ' legs'). 
+ aStream nextPutAll: name 
+! !
