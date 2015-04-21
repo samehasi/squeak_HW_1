@@ -9,11 +9,11 @@ day:=anInteger.! !!Course methodsFor: 'setter' stamp: 'sa 4/6/2015 22:08'!id:
 	"comment stating purpose of message"
 	name:=aString.! !!Course methodsFor: 'setter' stamp: 'sa 4/6/2015 22:08'!time:anInteger
 	"comment stating purpose of message"
-	time:=anInteger.! !!Course methodsFor: 'initialize-release' stamp: 'koko 4/21/2015 21:50'!initialize
+	time:=anInteger.! !!Course methodsFor: 'initialize-release' stamp: 'koko 4/22/2015 01:44'!initialize
 	"comment stating purpose of message"
 	id := String new.	id:='1'.
-	name:=''.
- 	day:=1.
+	name:=''.	.
+ 	day:=1.	 	time:=1.
 	isTwoHoursLong:=false.! !!Course methodsFor: 'getter' stamp: 'sa 4/6/2015 22:23'!day
 	"comment stating purpose of message"
 	^day.! !!Course methodsFor: 'getter' stamp: 'sa 4/6/2015 22:22'!id
@@ -31,8 +31,8 @@ day:=anInteger.! !!Course methodsFor: 'setter' stamp: 'sa 4/6/2015 22:08'!id:
 	"comment stating purpose of message"
 	|block set x ret|set:=Set new.block:= aSchedule filterCourses:[:dummy|true].x:=block value.[x~=nil]whileTrue:[set add: x.x:=block value].ret := set=courses.^ret.! !!WeeklySchedule methodsFor: 'others' stamp: 'sa 4/7/2015 22:39'!coursesOnDate: aDate
 	"comment stating purpose of message"
-^nil! !!WeeklySchedule methodsFor: 'others' stamp: 'koko 4/22/2015 00:33'!filterCourses:aBlock
+^nil! !!WeeklySchedule methodsFor: 'others' stamp: 'koko 4/22/2015 01:49'!filterCourses:aBlock
 	"comment stating purpose of message"
-|ret stack|ret:= OrderedCollection  new.courses do:[:each|(aBlock value:each) ifTrue:[ret addFirst: each]].ret sort:[:first :second | ((first day > second day) |(first day = second day))].stack := Stack new.ret do:[:each2 |stack push:each2].^[stack pop]! !!WeeklySchedule methodsFor: 'others' stamp: 'koko 4/21/2015 22:37'!totalHours
+|ret stack|ret:= OrderedCollection  new.courses do:[:each|(aBlock value:each) ifTrue:[ret addFirst: each]].ret sort:[:first :second | first day > second day or: [(first day = second day) and: [(first time) > (second time)]]].stack := Stack new.ret do:[:each2 |stack push:each2].^[(stack isEmpty) ifTrue:[nil] ifFalse:[stack pop]]! !!WeeklySchedule methodsFor: 'others' stamp: 'koko 4/21/2015 22:37'!totalHours
 	"comment stating purpose of message"
 	|ret|ret:=0.courses do:[:course|(course isTwoHoursLong ) ifTrue:[ret:= (ret+2)]ifFalse: [ret:=(ret+1)]].^ret.! !
